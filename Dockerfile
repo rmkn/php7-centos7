@@ -6,6 +6,7 @@ RUN yum -y install httpd cronolog
 RUN rpm --import https://rpms.remirepo.net/RPM-GPG-KEY-remi
 RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 RUN yum -y install --enablerepo=remi,remi-php72 php php-mbstring
+RUN sed -i -e 's/^;date.timezone =.*$/date.timezone = Asia\/Tokyo/' /etc/php.ini
 
 COPY security.sh /tmp/
 RUN /tmp/security.sh
