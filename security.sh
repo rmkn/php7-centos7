@@ -1,10 +1,10 @@
 #!/bin/sh
 
-sed -i -e 's/^expose_php.*$/expose_php = Off/' /etc/php.ini
+sed -i.org -e '/^expose_php/cexpose_php = Off' /etc/php.ini
 
-sed -i -e 's/AddDefaultCharset/#AddDefaultCharset/' /etc/httpd/conf/httpd.conf
-sed -i -e 's/Options Indexes/Options/' /etc/httpd/conf/httpd.conf
-sed -i -e 's/^\s*ScriptAlias/#ScriptAlias/' /etc/httpd/conf/httpd.conf
+sed -i.org -e 's/AddDefaultCharset/#AddDefaultCharset/' /etc/httpd/conf/httpd.conf
+sed -i -e '/Options/s/\s*Indexes//' /etc/httpd/conf/httpd.conf
+sed -i -e '/^\s*ScriptAlias/s/ScriptAlias/#ScriptAlias/' /etc/httpd/conf/httpd.conf
 
 mv /etc/httpd/conf.d/userdir.conf /etc/httpd/conf.d/userdir.conf.org
 mv /etc/httpd/conf.d/autoindex.conf /etc/httpd/conf.d/autoindex.conf.org
